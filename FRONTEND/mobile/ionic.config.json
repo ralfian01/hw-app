@@ -1,7 +1,0 @@
-{
-  "name": "capturing-moment",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react-vite"
-}
