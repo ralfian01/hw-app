@@ -1,7 +1,13 @@
 import Card from "@components/Elements/Card/Card";
-import React from "react";
 
-const Portofolio = () => {
+
+/**
+ * 
+ * @param props id ? Any
+ * @returns 
+ */
+const Portofolio = (props: any) => {
+  const { id } = props;
   const cardPorto = [
     {
       title: "Journey of Love: Our weddings Moments",
@@ -21,7 +27,9 @@ const Portofolio = () => {
   ];
 
   return (
-    <div className="min-h-screen flex justify-center">
+    <div
+      className="min-h-screen flex justify-center"
+      id={id}>
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-dark text-center mt-10 font-alex-brush font-semibold text-3xl drop-shadow">
           Our Portofolio

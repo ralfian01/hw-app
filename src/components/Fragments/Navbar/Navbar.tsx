@@ -1,10 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 const Navbar: React.FC = () => {
-  const navLink = ["home", "about", "portofolio", "package"];
+  // link nav
+  const navLink = ["home", "about", "services","collection", "portofolio", "package"];
+
+  const onPress = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault();
+    const target = window.document.getElementById(
+      e.currentTarget.href.split("#")[1]
+    );
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="bg-secondary text-base-content fixed top-0 z-30 flex h-16 w-full justify-center bg-opacity-75 backdrop-blur transition-shadow duration-100 [transform:translate3d(0,0,0)] shadow-sm">
       <div className="navbar shadow-md w-full">
+        {/* dropdown nav link in media -1024 or mobile and tablet */}
         <div className="navbar-start md:px-5">
           <div className="dropdown">
             <div
@@ -29,10 +42,18 @@ const Navbar: React.FC = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 capitalize">
               {navLink.map((item, index) => (
-              <li key={index}>
-                <Link to={item === "home" ? "/" : `#${item}`}>{item}</Link>
-              </li>
-            ))}
+                <li key={index}>
+                  <a
+                    onClick={(e) => onPress(e)}
+                    href={`/home#${item}`}>
+                    <div
+                      data-to-scrollspy-id={`${item}`}
+                      className={"ss-item"}>
+                      {item}
+                    </div>
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
           <Link
@@ -41,15 +62,22 @@ const Navbar: React.FC = () => {
             TulleCapture
           </Link>
         </div>
+        {/* nav link in desktop */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal text-dark font-semibold font-montserrat text-md uppercase">
             {navLink.map((item, index) => (
               <li key={index}>
-                <Link to={item === "home" ? "/" : `#${item}`}>{item}</Link>
+                <a
+                  onClick={(e) => onPress(e)}
+                  href={`/home#${item}`}>
+                  <div data-to-scrollspy-id={`${item}`}>{item}</div>
+                </a>
               </li>
             ))}
           </ul>
         </div>
+
+        {/* button sign in */}
         <div className="navbar-end md:px-5">
           <button className="btn btn-primary uppercase text-light text-sm font-montserrat font-normal tracking-wide">
             <img

@@ -1,6 +1,13 @@
 import Card from "@components/Elements/Card/Card";
 
-const Package = () => {
+
+/**
+ * 
+ * @param props id ? Any
+ * @returns 
+ */
+const Package = (props: any) => {
+  const { id } = props;
   const cardPackage = [
     {
       title: "SILVER",
@@ -27,8 +34,8 @@ const Package = () => {
           ]
         }
       ],
-			img: "/assets/img/collection-1.png",
-			link: "/package/silver"
+      img: "/assets/img/collection-1.png",
+      link: "/package/silver"
     },
     {
       title: "GOLD",
@@ -55,8 +62,8 @@ const Package = () => {
           ]
         }
       ],
-			img: "/assets/img/collection-2.png",
-			link: "/package/gold"
+      img: "/assets/img/collection-2.png",
+      link: "/package/gold"
     },
     {
       title: "PLATINUM",
@@ -84,22 +91,30 @@ const Package = () => {
           ]
         }
       ],
-			img: "/assets/img/collection-6.png",
-			link: "/package/platinum"
-    },
+      img: "/assets/img/collection-6.png",
+      link: "/package/platinum"
+    }
   ];
 
   return (
-    <div className="min-h-screen flex justify-center">
+    <div
+      className="min-h-screen flex justify-center"
+      id={id}>
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-dark text-center my-5 font-alex-brush font-semibold text-3xl drop-shadow">
           Our Portofolio
         </h1>
         <div className="w-full">
           <div className="carousel carousel-center max-w-screen-md min-w-72 space-x-10 items-start shadow-[inset_0_5px_24px_-15px_rgba(0,0,0,0.3)] rounded-btn">
-						{cardPackage.map((item, index) => (
-							<Card.CardPackage title={item.title} content={item.content} img={item.img} link={item.link} key={index}/>
-						))}
+            {cardPackage.map((item, index) => (
+              <Card.CardPackage
+                title={item.title}
+                content={item.content}
+                img={item.img}
+                link={item.link}
+                key={index}
+              />
+            ))}
           </div>
         </div>
       </div>

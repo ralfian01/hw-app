@@ -1,5 +1,8 @@
-import React from "react";
-
+/**
+ * 
+ * @param props id ? Any
+ * @returns 
+ */
 const OurService = (props:any) => {
   const { id } = props
 

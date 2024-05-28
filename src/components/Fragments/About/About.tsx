@@ -2,6 +2,11 @@ import { IonIcon } from "@ionic/react";
 
 import { arrowForward } from "ionicons/icons";
 
+/**
+ * 
+ * @param props id ? Any
+ * @returns 
+ */
 const About = (props: any) => {
   const { id } = props;
   return (
@@ -9,7 +14,7 @@ const About = (props: any) => {
       className="min-h-screen flex justify-center"
       id={id}>
       <div className="md:p-20 p-10">
-        <h1 className="text-dark text-center md:my-10 font-alex-brush font-semibold text-3xl drop-shadow">
+        <h1 className="text-dark text-center md:my-1 font-alex-brush font-semibold text-3xl drop-shadow">
           About Us
         </h1>
         <p className="text-dark md:px-20 font-montserrat text-center md:mb-32 mb-5 text-lg md:text-xl">

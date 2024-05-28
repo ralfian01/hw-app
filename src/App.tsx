@@ -27,7 +27,7 @@ import Rootrouter from "./routes";
 
 /* Provider for store redux */
 import { Provider } from "react-redux";
-import { store } from "@store/store";
+import { store } from "@store/index";
 
 /* store */
 

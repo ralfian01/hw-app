@@ -65,11 +65,11 @@ const CardPackage: React.FC<PackageProps> = (props: PackageProps) => {
             <h1>{props.title}</h1>
           </div>
           <div className="card-body">
-            {props.content.map((item: any) => (
-              <div className="card-subtitle">
+            {props.content.map((item: any, index) => (
+              <div className="card-subtitle" key={index}>
                 <h2>{item.subtitle}</h2>
-                {item.list.map((list: any) => (
-                  <ul>
+                {item.list.map((list: any, i:any) => (
+                  <ul key={i}>
                     <li>{list}</li>
                   </ul>
                 ))}
