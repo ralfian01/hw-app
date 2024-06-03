@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">capturing-moment</string>
+    <string name="title_activity_main">capturing-moment</string>
+    <string name="package_name">com.capturing.app</string>
+    <string name="custom_url_scheme">com.capturing.app</string>
+</resources>
