@@ -2,21 +2,31 @@
 http://ionicframework.com/docs/theming/ */
 @import url("https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
+:root {
+  --dark: #161c24;
+  --light: #f9fafb;
+  --gray: #ced3d0;
+  --white: #ffffff;
+  --primary: #677b71;
+  --secondary: #ecede8;
+  --success: #8fb02b;
+  --error: #ee5252;
+  --danger: #ee5252;
+  --warning: #f5cc3c;
+  --info: #47c5df;
+  --acent: #47dfbc;
 
-:root{
-	--dark: #161C24;
-	--light: #F9FAFB;
-	--gray: #CED3D0;
-	--white: #FFFFFF;
-	--primary: #677B71;
-	--secondary: #ECEDE8;
-	--success: #8FB02B;
-	--error: #EE5252;
-	--danger: #EE5252;
-	--warning: #F5CC3C;
-	--info: #47C5DF;
-	--acent: #47dfbc;
+   --ion-color-primary: var(--primary);
+   --ion-color-primary-rgb: 103,123,113;
+   --ion-color-primary-contrast: var(--light);
+   --ion-color-primary-contrast-rgb: 255,255,255;
+   --ion-color-primary-shade: #5f6f5b;
+   --ion-color-primary-tint: #7b8b7a;
 
-	--ft-montserrat: 'Montserrat', sans-serif;
-	--ft-alex-brush: 'Alex Brush', cursive;
+  --ft-montserrat: "Montserrat", sans-serif;
+  --ft-alex-brush: "Alex Brush", cursive;
+}
+
+ion-content{
+	--background: var(--light);
 }

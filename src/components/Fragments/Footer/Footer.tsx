@@ -1,118 +1,224 @@
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import {
+  IonFooter,
+  IonTabBar,
+  IonTabButton,
+  IonLabel,
+  IonRippleEffect,
+  IonIcon,
+  IonButton,
+  IonToolbar
+} from "@ionic/react";
+import { home, images, person, settings } from "ionicons/icons";
+
+import { Icon } from "@iconify/react";
+import ButtonTab from "@components/Elements/Button/ButtonTab";
 
 const Footer = () => {
-  const url = window.location.pathname;
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState("");
+  const [login, setLogin] = useState(false);
 
-  const linkFoot = ["home", "about", "portofolio", "package", "contact"];
+  useEffect(() => {
+    setActiveTab(location.pathname);
+  }, [location]);
 
-  const iconSocial = [
-    {
-      img: "./assets/icons/social/instagram.svg",
-      class: "w-8 h-8",
-      link: "#"
-    },
-    {
-      img: "./assets/icons/social/whatsapp.svg",
-      class: "w-10 h-10",
-      link: "#"
-    },
-    {
-      img: "./assets/icons/social/youtube.svg",
-      class: "w-11 h-12",
-      link: "#"
-    },
-    {
-      img: "./assets/icons/social/facebook.svg",
-      class: "w-8 h-9",
-      link: "#"
-    },
-    {
-      img: "./assets/icons/social/twiter.svg",
-      class: "w-8 h-9",
-      link: "#"
-    }
-  ];
   return (
-    <footer className="bg-primary shadow-[0_0_10px_0_rgba(0,0,0,0.2)] mt-10">
-      <div className="flex flex-col gap-4">
-        {/* title footer */}
-        <div className="flex justify-center items-center py-4 border-b-white border-b-2 w-full gap-2">
-          <h1 className="font-alex-brush text-3xl text-light text-center drop-shadow-[0px_3px_3px_rgba(0,0,0,0.5)]">
-            TulleCapture
-          </h1>
-          <img
-            src="./assets/icons/logo-footer.png"
-            draggable="false"
-            className="w-8 h-9 drop-shadow-[0px_4px_4px_rgba(0,0,0,0.5)]"
-          />
-        </div>
-        {/* link footer */}
-        <div className="flex justify-between mx-10 font-medium font-montserrat text-sm text-light">
-          <div className="flex flex-col uppercase gap-4 flex-wrap h-24">
-            {linkFoot.map((item, index) => (
-              <Link
-                className="link link-hover mx-6"
-                to={`${url}/#${item}`}
-                key={index}>
-                {item}
-              </Link>
-            ))}
-          </div>
-          {/* sign in or sign up to access */}
-          <Link
-            to={"/#"}
-            className="link link-hover w-60 px-4">
-            Sign up and get the chance to enliven your wedding
-          </Link>
-        </div>
-        {/* social acount */}
-        <div className="flex items-center gap-3 px-14">
-          {iconSocial.map((item, index) => (
-            <Link
-              to={item.link}
-              key={index}>
-              <img
-                src={item.img}
-                draggable="false"
-                className={`object-cover drop-shadow-[0px_1px_4px_rgba(0,0,0,0.4)] ${item.class}`}
-              />
-            </Link>
-          ))}
-        </div>
-        {/* copyright and policy terms */}
-        <div className="flex py-4 border-t-white border-t-2 w-full px-10 items-center justify-between">
-          {/* copyright */}
-          <div className="flex justify-center align items-center text-light gap-2">
-            <span className="text-2xl font-semibold font-montserrat">
-              &copy;
-            </span>
-            <span className="font-montserrat font text-xl">2024,</span>
-            <Link to={"#"} className="link link-hover mt-1">
-              <span className="font-alex-brush text-xl">TuleCapture</span>
-            </Link>
-          </div>
-          {/* terms and policy */}
-          <div className="flex font-montserrat text-md text-center gap-1 text-light">
-            <span>
-              <Link
-                to={"#"}
-                className="link link-hover">
-                Terms Use
-              </Link>
-            </span>
-            <span>৹</span>
-            <span>
-              <Link
-                to={"#"}
-                className="link link-hover">
-                Privacy Policy
-              </Link>
-            </span>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <IonTabBar slot="bottom">
+      <IonTabButton
+        tab="home"
+        href="/home">
+        <IonIcon
+          aria-hidden="true"
+          icon={home}
+        />
+        <IonLabel>Home</IonLabel>
+      </IonTabButton>
+      <IonTabButton
+        tab="paket"
+        href="/paket">
+        <IonIcon
+          aria-hidden="true"
+          icon={images}
+        />
+        <IonLabel>Galery</IonLabel>
+      </IonTabButton>
+      <IonTabButton
+        tab="portofolio"
+        href="/portofolio">
+        <IonIcon
+          aria-hidden="true"
+          icon={settings}
+        />
+        <IonLabel>Portofolio</IonLabel>
+      </IonTabButton>
+    </IonTabBar>
   );
 };
 
 export default Footer;
+
+/**
+ *
+ */
+{
+  /* <IonFooter className="shadow min-h-[5rem]"> */
+}
+//   <div className="flex flex-row items-center justify-evenly">
+//     {/* home */}
+//     <IonButton
+//       fill="clear"
+//       onClick={() => setActiveTab("/home")}>
+//       <Link to="/home">
+//         <ButtonTab
+//           tab="home"
+//           activeTab={activeTab}
+//           href="/home"
+//           iconActive="bi:house-door-fill"
+//           iconNotActive="bi:house-door"
+//         />
+//       </Link>
+//     </IonButton>
+
+//     {/* paket */}
+//     <IonButton
+//       fill="clear"
+//       onClick={() => setActiveTab("/home/paket")}>
+//       <Link to="/home/paket">
+//         <ButtonTab
+//           tab="paket"
+//           activeTab={activeTab}
+//           href="/home/paket"
+//           iconActive="mingcute:box-3-fill"
+//           iconNotActive="mingcute:box-3-line"
+//         />
+//       </Link>
+//     </IonButton>
+
+//     {/* portofolio */}
+//     <IonButton
+//       fill="clear"
+//       onClick={() => setActiveTab("/home/portofolio")}>
+//       <Link to="/home/portofolio">
+//         <ButtonTab
+//           tab="portofolio"
+//           activeTab={activeTab}
+//           href="/home/portofolio"
+//           iconActive="mingcute:layer-fill"
+//           iconNotActive="mingcute:layer-line"
+//         />
+//       </Link>
+//     </IonButton>
+
+//     {/* profile */}
+//     {login ? (
+//       <IonButton
+//         fill="clear"
+//         onClick={() => setActiveTab("/home/profile")}>
+//         <Link to="/home/profile">
+//           <ButtonTab
+//             tab="profile"
+//             activeTab={activeTab}
+//             href="/home/profile"
+//             iconActive="bi:person-fill"
+//             iconNotActive="bi:person"
+//           />
+//         </Link>
+//       </IonButton>
+//     ) : (
+//       <IonButton
+//         routerLink="/home/login"
+//         style={{
+//           "--border-radius": "10px 0 10px 10px",
+//           "--padding-top": "10px",
+//           "--padding-bottom": "10px"
+//         }}>
+        // <div className="flex flex-col items-center justify-center">
+        //   <IonIcon
+        //     icon={person}
+        //     size="large"
+        //   />
+        //   <IonLabel className="font-montserrat font-semibold capitalize">
+        //     Login
+        //   </IonLabel>
+        // </div>
+//       </IonButton>
+//     )}
+//   </div>
+// </IonFooter>
+{
+  /* <IonTabBar className="h-full rounded-t-2xl shadow-[0_-4px_9px_0px_rgba(0,0,0,0.1)]"> */
+}
+//   <IonTabButton
+//     target="_blank"
+//     tab="home"
+//     href="/home"
+//     className="ion-activatable ripple-parent rounded-none"
+//     onClick={() => setActiveTab("/home")}>
+//     <IonRippleEffect></IonRippleEffect>
+// <ButtonTab
+//   tab="home"
+//   activeTab={activeTab}
+//   href="/home"
+//   iconActive="bi:house-door-fill"
+//   iconNotActive="bi:house-door"
+// />
+//   </IonTabButton>
+
+//   {/* paket */}
+//   <IonTabButton
+//     tab="paket"
+//     href="/home/paket"
+//     className="ion-activatable ripple-parent rounded-none"
+//     onClick={() => setActiveTab("/home/paket")}>
+//     <IonRippleEffect></IonRippleEffect>
+{
+  /* <ButtonTab
+  tab="paket"
+  activeTab={activeTab}
+  href="/home/paket"
+  iconActive="mingcute:box-3-fill"
+  iconNotActive="mingcute:box-3-line"
+/> */
+}
+//   </IonTabButton>
+
+//   {/* portofolio */}
+//   <IonTabButton
+//     tab="portofolio"
+//     href="/home/portofolio"
+//     className="ion-activatable ripple-parent rounded-none"
+//     onClick={() => setActiveTab("/home/portofolio")}>
+//     <IonRippleEffect></IonRippleEffect>
+//     <ButtonTab
+//       tab="portofolio"
+//       activeTab={activeTab}
+//       href="/home/portofolio"
+//       iconActive="mingcute:layer-fill"
+//       iconNotActive="mingcute:layer-line"
+//     />
+//   </IonTabButton>
+
+//   {/* login our profile */}
+//   <IonTabButton className="ion-activatable ripple-parent rounded-none">
+//     <IonRippleEffect></IonRippleEffect>
+// <IonButton
+//   routerLink="/home/login"
+//   style={{
+//     "--border-radius": "10px 0 10px 10px",
+//     "--padding-top": "2.3px",
+//     "--padding-bottom": "2.3px"
+//   }}>
+//   <div className="flex flex-col items-center justify-center">
+//     <IonIcon
+//       icon={person}
+//       size="large"
+//     />
+//     <IonLabel className="font-montserrat font-semibold capitalize">
+//       Login
+//     </IonLabel>
+//   </div>
+// </IonButton>
+//   </IonTabButton>
+// </IonTabBar>

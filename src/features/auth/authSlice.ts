@@ -32,7 +32,7 @@ const authSlice = createSlice({
         (state) => {
           state.loading = false;
         }
-      );
+      )
   }
 });
 
