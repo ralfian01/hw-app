@@ -1,0 +1,15 @@
+.ion-input-search{
+	--box-shadow: none;
+	.searchbar-input-container{
+		input[type="search"]{
+			padding: 2px 4px 2px 4px;
+			background: transparent;
+			border: none;
+			border-radius: 0;
+			box-shadow: none;
+			&:focus{
+				border-bottom: 1px solid var(--primary);
+			}
+		}
+	}
+}

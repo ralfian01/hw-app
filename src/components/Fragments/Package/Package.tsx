@@ -7,10 +7,9 @@ import Card from "@components/Elements/Card/Card";
 import Slide from "@components/Elements/Slide/Slide";
 import ButtonPaket from "@components/Elements/Button/ButtonPaket";
 
-import data from "../../../data/data";
-import IonPhotoViewer from "@codesyntax/ionic-react-photo-viewer";
+// import data from "../../../data/data";
 
-const { data_portofolio, kolleksi_slide, koleksi_poto, data_paket } = data;
+// const { data_portofolio, kolleksi_slide, koleksi_poto, data_paket } = data;
 
 // Package conatiner
 const Package = (props: any) => {
@@ -61,6 +60,9 @@ const Title: React.FC<TitleProps> = (TitleProps) => {
 
 // Package Beranda
 const Home = () => {
+  const { data_portofolio, kolleksi_slide, data_paket } = useSelector(
+    (state: any) => state.ui.data
+  );
   return (
     <Package color="light">
       {/* Paket */}
@@ -69,7 +71,7 @@ const Home = () => {
         link="/paket"
       />
       <div className="carousel carousel-center max-w-full px-2 space-x-5 pb-6">
-        {data_paket.beranda.map((item, index) => (
+        {data_paket.beranda.map((item: any, index: any) => (
           <div
             key={index}
             className="carousel-item card w-full shadow-md">
@@ -88,12 +90,13 @@ const Home = () => {
         link="/portofolio"
       />
       <div className="carousel carousel-center max-w-full px-2 space-x-5 pb-6">
-        {data_portofolio.map((item, index) => (
+        {data_portofolio.map((item: any, index: any) => (
           <div
             key={index}
             className="carousel-item card w-full shadow-md">
             <Card.Portofolio
               key={index}
+              id={item.id}
               image={item.image}
               desc={item.desc}
               title={item.title}
@@ -139,8 +142,11 @@ const Paket = () => {
     }
   ];
 
-  const { prewedding, wedding, engagement, add_on } =
-    data.data_paket.more_paket;
+  const { prewedding, wedding, engagement, add_on } = useSelector(
+    (state: any) => state.ui.data.data_paket.more_paket
+  );
+
+  // data.data_paket.more_paket;
 
   const renderPackages = (packages: any[]) => {
     return packages.map((item, index) => (
@@ -192,15 +198,17 @@ const Paket = () => {
 
 // Package portofolio
 const Portofolio = () => {
+  const { data_portofolio } = useSelector((state: any) => state.ui.data);
   return (
     <Package color="light">
       <div className="mx-2 py-1">
-        {data_portofolio.map((item, index) => (
+        {data_portofolio.map((item: any, index: any) => (
           <div
             key={index}
             className="card w-full shadow-md my-6">
             <Card.Portofolio
               key={index}
+              id={item.id}
               image={item.image}
               desc={item.desc}
               title={item.title}
@@ -214,6 +222,7 @@ const Portofolio = () => {
 
 // Package Collection
 const Collection = () => {
+  const { koleksi_poto } = useSelector((state: any) => state.ui.data);
   return (
     <Package color="light">
       <div className="mx-3 py-4">
@@ -229,3 +238,11 @@ Package.Portofolio = Portofolio;
 Package.Collection = Collection;
 
 export default Package;
+
+
+
+// ../public/gambarna
+// [../public][/gambarna]
+// {{url}}{{item.image}}
+// {{ url + item.image.split("../public")[1] }}
+// localhost:8000/gambarna

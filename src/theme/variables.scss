@@ -16,17 +16,42 @@ http://ionicframework.com/docs/theming/ */
   --info: #47c5df;
   --acent: #47dfbc;
 
-   --ion-color-primary: var(--primary);
-   --ion-color-primary-rgb: 103,123,113;
-   --ion-color-primary-contrast: var(--light);
-   --ion-color-primary-contrast-rgb: 255,255,255;
-   --ion-color-primary-shade: #5f6f5b;
-   --ion-color-primary-tint: #7b8b7a;
+  --ion-color-primary: var(--primary);
+  --ion-color-primary-rgb: 103, 123, 113;
+  --ion-color-primary-contrast: var(--light);
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #5f6f5b;
+  --ion-color-primary-tint: #7b8b7a;
 
   --ft-montserrat: "Montserrat", sans-serif;
   --ft-alex-brush: "Alex Brush", cursive;
 }
+ion-content {
+  --background: var(--light);
+}
 
-ion-content{
-	--background: var(--light);
+.waviy {
+  position: relative;
+  -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0,0,0,.2));
+  font-size: 24px;
+  font-weight: 900;
+  
+
+  span {
+    font-family: var(--ft-alex-brush);
+    position: relative;
+    display: inline-block;
+    color: var(--primary);
+    letter-spacing: 0.2em;
+    animation: waviy 1s infinite;
+    animation-delay: calc(.1s * var(--i));
+  }  
+}
+@keyframes waviy {
+  0%,40%,100% {
+    transform: translateY(0)
+  }
+  20% {
+    transform: translateY(-10px)
+  }
 }

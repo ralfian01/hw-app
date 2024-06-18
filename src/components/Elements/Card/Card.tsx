@@ -1,23 +1,29 @@
 import React from "react";
-import { IonIcon } from "@ionic/react";
+import { IonButton, IonIcon } from "@ionic/react";
 import { chevronForward } from "ionicons/icons";
-import "./Card.scss";
 import IonPhotoViewer from "@codesyntax/ionic-react-photo-viewer";
+import "./Card.scss";
+import { Link } from "react-router-dom";
 
 // conatiner card
+
 const Card = (props: any) => {
-  const { children, name, image } = props;
+  const { children, name, image, tipe, path } = props;
   return (
     <>
       <figure className="flex flex-col">
         <h1 className="m-0 text-light font-montserrat font-semibold bg-dark opacity-70 uppercase w-full text-center text-lg mix-blend-multiply">
           {name}
         </h1>
-        <img
-          src={image}
-          alt={image}
-          className={`w-full h-[14rem] rounded-bl-box object-cover bg-center bg-cover`}
-        />
+        <Link
+          to={tipe ? path : "#"}
+          className="w-full">
+          <img
+            src={image}
+            alt={image}
+            className={`w-full h-[14rem] rounded-bl-box object-cover bg-center bg-cover`}
+          />
+        </Link>
       </figure>
       {children}
     </>
@@ -38,6 +44,7 @@ interface PaketProps {
   name?: string;
   image?: string;
   price?: number;
+  icon?: boolean;
 }
 /**
  * @param props
@@ -45,18 +52,29 @@ interface PaketProps {
  * @returns
  */
 const Paket: React.FC<PaketProps> = (props: PaketProps) => {
-  const { name = "card", image = "", price = 0 } = props;
+  const { name = "card", image = "", price = 0, icon = true } = props;
   return (
     <Card
       name={name}
-      image={image}>
+      image={image}
+      tipe={icon}
+      path={`/detail-paket/${name.toLowerCase()}`}>
       <div className="flex justify-between items-center px-4 py-2">
         <h2 className="card-title font-montserrat">{formatRp(price)}</h2>
-        <IonIcon
-          icon={chevronForward}
-          size="small"
-          className="text-primary bg-opacity-50 rounded-full border-primary border-2 p-[2px] cursor-pointer"
-        />
+        {icon && (
+          <IonButton
+            slot="end"
+            size="small"
+            fill="outline"
+            routerLink={`/detail-paket/${name.toLowerCase()}`}
+            shape="round">
+            <IonIcon
+              icon={chevronForward}
+              size="small"
+              slot="icon-only"
+            />
+          </IonButton>
+        )}
       </div>
     </Card>
   );
@@ -64,6 +82,7 @@ const Paket: React.FC<PaketProps> = (props: PaketProps) => {
 
 // Card Portofolio
 interface PackageProps {
+  id?: string;
   image?: string;
   desc?: string;
   title?: string;
@@ -73,10 +92,17 @@ interface PackageProps {
  * @typeParams data: array of object
  * @returns
  */
-const Portofolio: React.FC<PackageProps> = (props: PackageProps) => {
-  const { image, desc = "description", title = "title" } = props;
+const Portofolio: React.FC<PackageProps> = ({
+  image,
+  desc = "description",
+  title = "title",
+  id
+}: PackageProps) => {
   return (
-    <Card image={image}>
+    <Card
+      image={image}
+      path={`/detail-portofolio/${id}`}
+      tipe={true}>
       <div className="items-center px-2">
         <p className="text-center font-alex-brush py-1">{desc}</p>
         <h2 className="card-title font-montserrat text-[1.4rem] text-center pb-2">

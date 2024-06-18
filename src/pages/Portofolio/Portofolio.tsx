@@ -1,14 +1,19 @@
-import { IonPage } from "@ionic/react";
+import { IonPage, useIonRouter } from "@ionic/react";
 import PortofolioLayouts from "@components/Layouts/PortofolioLayouts";
 import Header from "@components/Fragments/Header/Header";
-import Footer from "@components/Fragments/Footer/Footer";
 
 const Portofolio = () => {
+  const history = useIonRouter();
+
+  // document.addEventListener("ionBackButton", (ev: any) => {
+  //   ev.detail.register(10, () => {
+  //     history.push("/home", "root", "pop");
+  //   });
+  // });
   return (
     <IonPage>
       <Header />
       <PortofolioLayouts />
-      {/* <Footer /> */}
     </IonPage>
   );
 };
