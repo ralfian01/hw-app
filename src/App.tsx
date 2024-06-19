@@ -1,15 +1,7 @@
 import { IonReactRouter } from "@ionic/react-router";
-import { Redirect, Route, Router } from "react-router";
-import {
-  IonApp,
-  IonIcon,
-  IonLabel,
-  IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
-  setupIonicReact
-} from "@ionic/react";
+import { IonApp, setupIonicReact } from "@ionic/react";
+import { SplashScreen as CapSplashScreen } from "@capacitor/splash-screen";
+import SplashScreen from "@pages/SplashScreen";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -39,38 +31,61 @@ import Rootrouter from "./routes";
 /* Provider for store redux */
 import { Provider } from "react-redux";
 import { store } from "@store/index";
-import Home from "@pages/Home";
-import Paket from "@pages/Paket";
-import Portofolio from "@pages/Portofolio";
+import { useEffect, useState } from "react";
+import { Network } from "@capacitor/network";
 
-setupIonicReact({
-  hardwareBackButton: false,
-  swipeBackEnabled: false,
-  innerHTMLTemplatesEnabled: true
-});
+setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <Provider store={store}>
-      <Rootrouter />
-    </Provider>
-  </IonApp>
-);
+const App: React.FC = () => {
+  const [showSplash, setShowSplash] = useState(true);
+  const [networkStatus, setNetworkStatus] = useState<string | null>(null);
+  const [showToast, setShowToast] = useState(false);
+  useEffect(() => {
+    const checkNetworkStatus = async () => {
+      const status = await Network.getStatus();
+      setNetworkStatus(status.connected ? "online" : "offline");
+      if (!status.connected) {
+        setShowToast(true);
+      }
+      console.log("Network status:", status.connectionType);
+    };
+
+    checkNetworkStatus();
+
+    Network.addListener("networkStatusChange", (status) => {
+      console.log("Network status changed", status);
+      setNetworkStatus(status.connected ? "online" : "offline");
+      if (!status.connected) {
+        setShowToast(true);
+      }
+    });
+
+    const splashTimeout = setTimeout(() => {
+      if (networkStatus === "online") {
+        setShowSplash(false);
+        CapSplashScreen.hide();
+      }
+    }, 3000);
+
+    return () => {
+      clearTimeout(splashTimeout);
+      Network.removeAllListeners();
+    };
+  }, [networkStatus]);
+
+  if (showSplash || networkStatus === "offline") {
+    return <SplashScreen showToast={showToast} />;
+  }
+
+  return (
+    <IonApp>
+      <Provider store={store}>
+        <IonReactRouter>
+          <Rootrouter />
+        </IonReactRouter>
+      </Provider>
+    </IonApp>
+  );
+};
 
 export default App;
-
-/**
- * <IonReactRouter>
-          <IonRouterOutlet>
-            <Route
-              path="/home"
-              render={(props) => <Rootrouter {...props} />}
-            />
-            <Route
-              exact
-              path="/"
-              render={() => <Redirect to="/home" />}
-            />
-          </IonRouterOutlet>
-        </IonReactRouter>
- */

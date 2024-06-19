@@ -1,3 +1,4 @@
+import '@codetrix-studio/capacitor-google-auth'
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";

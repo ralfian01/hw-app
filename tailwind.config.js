@@ -42,12 +42,14 @@ export default {
           error: "#EE5252",
           warning: "#F5CC3C",
           info: "#47C5DF",
-          accent: "#47dfbc"
+          accent: "#47dfbc",
+          dark: "#161C24",
         }
       },
       {
         light: {
-          ...require("daisyui/src/theming/themes")["[data-theme=light]"]
+          ...require("daisyui/src/theming/themes")["[data-theme=light]"],
+          dark: "#161C24"
         }
       }
     ]

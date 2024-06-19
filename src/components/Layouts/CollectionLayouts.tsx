@@ -2,9 +2,22 @@ import Banner from "@components/Fragments/Banner/Banner";
 import Package from "@components/Fragments/Package/Package";
 import { IonContent } from "@ionic/react";
 
-const CollectionLayouts = () => {
+interface CollectionLayoutsProps {
+  refContent?: any;
+}
+
+/**
+ * @param Params refContent
+ * @returns React.FC CollectionLayouts {refContent : any}
+ */
+
+const CollectionLayouts: React.FC<CollectionLayoutsProps> = ({
+  refContent
+}: CollectionLayoutsProps) => {
   return (
-    <IonContent>
+    <IonContent
+      ref={refContent}
+      scrollEvents={true}>
       <Banner.Package
         banner="/assets/img/banner/banner-collection.jpeg"
         Bannername="Koleksi foto"
