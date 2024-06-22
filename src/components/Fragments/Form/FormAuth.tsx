@@ -1,4 +1,9 @@
+// import package
+
+
+// import hooks react
 import { useEffect } from "react";
+// import component react-router
 import { Link, Redirect } from "react-router-dom";
 
 // package hooks Form Validation
@@ -6,7 +11,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 // component
 import { Icon } from "@iconify/react";
-import { IonButton, IonTextarea } from "@ionic/react";
+import { IonButton } from "@ionic/react";
 import Input from "@components/Elements/Input/Input";
 
 // Redux
@@ -16,7 +21,10 @@ import { loginGoogle, loginUser } from "@features/auth";
 
 // hooks
 import useAuthRedirect from "@hooks/useAuthRedirect";
+import Modal from "@components/Elements/Modal/Dialog/modalDialog";
 
+
+// types form
 type FormInputs = {
   authType: "login" | "register";
   username: string;
@@ -37,9 +45,17 @@ type FormInputs = {
       alamat: string;
     }
 );
+
+
 interface FormAuthProps {
   auth?: "login" | "register";
 }
+
+/**
+ * 
+ * @param param0 auth
+ * @returns 
+ */
 
 const FormAuth: React.FC<FormAuthProps> = ({ auth = "login" }) => {
   // Validator formAuth
@@ -105,36 +121,20 @@ const FormAuth: React.FC<FormAuthProps> = ({ auth = "login" }) => {
           />
         )}
       </form>
-      <dialog
+      <Modal
         id="modal"
-        className="modal backdrop-blur-xl"
         open={loading}>
         <h3 className="loading loading-dots loading-lg text-primary"></h3>
-      </dialog>
-      <dialog
+      </Modal>
+      <Modal.Dialog
         id="my_modal_2"
-        className="modal backdrop-blur-xl"
-        open={error}>
-        <div className="modal-box">
-          <h3 className="font-bold text-lg">
-            <Icon
-              icon="bi:exclamation-triangle-fill"
-              width={60}
-              height={60}
-              color="orange"
-              className="mx-auto"
-            />
-          </h3>
-          <p className="text-center font-montserrat font-semibold text-lg text-red-500">
-            Username atau Password yang anda masukkan tidak sesuai
-          </p>
-        </div>
-        <form
-          method="dialog"
-          className="modal-backdrop">
-          <button>close</button>
-        </form>
-      </dialog>
+        open={error}
+        iconColor="orange"
+        iconName="bi:exclamation-triangle-fill"
+        iconSize={60}
+        className="text-danger">
+        Username atau Password yang anda masukkan tidak sesuai
+      </Modal.Dialog>
     </div>
   );
 };
@@ -146,7 +146,15 @@ interface LoginProps {
   clear: ReturnType<typeof useForm<FormInputs>>["clearErrors"];
   trigger: ReturnType<typeof useForm<FormInputs>>["trigger"];
 }
+
+/**
+ * 
+ * @param param0 register, errors, clear, trigger
+ * @returns 
+ */
 const Login: React.FC<LoginProps> = ({ register, errors, clear, trigger }) => {
+
+  // validasi login
   const validate = {
     username: {
       ...register("username", {
@@ -170,11 +178,14 @@ const Login: React.FC<LoginProps> = ({ register, errors, clear, trigger }) => {
     }
   };
 
+  // dispatch
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
-  const loginWithGoogle  = () => {
+
+  // Login with Google
+  const loginWithGoogle = () => {
     dispatch(loginGoogle());
-  }
+  };
 
   return (
     <>
@@ -253,6 +264,12 @@ interface RegisterProps {
   register: ReturnType<typeof useForm<FormInputs>>["register"];
   errors: ReturnType<typeof useForm<FormInputs>>["formState"]["errors"];
 }
+
+/**
+ * 
+ * @param param0 register, errors
+ * @returns 
+ */
 
 const Register: React.FC<RegisterProps> = ({ register, errors }) => {
   return (

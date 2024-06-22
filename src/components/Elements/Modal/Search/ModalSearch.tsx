@@ -1,4 +1,9 @@
+// import package
+
+// import component ICONNIFY
 import { Icon } from "@iconify/react";
+
+// import COMPONENTS IONIC
 import {
   IonButton,
   IonButtons,
@@ -11,17 +16,28 @@ import {
   IonSegmentButton,
   IonToolbar
 } from "@ionic/react";
-import Card from "../Card/Card";
-import "./ModalSearch.scss";
+
+// import COMPONENTS cards in element
+import Card from "@components/Elements/Card/Card";
+
+// import state react
 import { useState } from "react";
+
+// import redux
 import { useSelector } from "react-redux";
+
+// import SCSS
+import "./ModalSearch.scss";
 
 // Interface for props
 interface ModalSearchProps {
   isOpen: boolean;
   onCLick: () => void;
 }
-
+/**
+ * @param props isOpen, onCLick
+ * @returns 
+ */
 // Icon component for no search results
 const IconNoSearch = () => (
   <div className="p-4 flex flex-col items-center">
@@ -127,22 +143,27 @@ const ModalSearch: React.FC<ModalSearchProps> = ({ isOpen, onCLick }) => {
     tipe: "portofolio"
   }));
 
+  // combine data
   const combinedData = [...paket, ...portofolio];
 
+  // state
   const [results, setResults] = useState<any[]>([]);
   const [query, setQuery] = useState<string>("");
   const [selectedSegment, setSelectedSegment] = useState<string>("semua");
 
+  // handle input search
   const handleInput = (ev: Event) => {
     const target = ev.target as HTMLIonSearchbarElement;
     const searchQuery = target?.value?.toLowerCase() || "";
     setQuery(searchQuery);
 
+    // filter results
     if (searchQuery.trim() === "") {
       setResults([]);
       return;
     }
 
+    // filter results based on search query
     const filteredResults = combinedData.filter((item) => {
       return (
         (item.tipe === "paket" &&
@@ -152,13 +173,18 @@ const ModalSearch: React.FC<ModalSearchProps> = ({ isOpen, onCLick }) => {
       );
     });
 
+    // set filtered results
     setResults(filteredResults);
   };
 
+
+  // handle segment change
   const handleSegmentChange = (e: any) => {
     setSelectedSegment(e.target.value);
   };
 
+
+  // get filtered results
   const getFilteredResults = () => {
     if (selectedSegment === "semua") {
       return results;
@@ -167,6 +193,7 @@ const ModalSearch: React.FC<ModalSearchProps> = ({ isOpen, onCLick }) => {
     }
   };
 
+  // render component
   const filteredResults = getFilteredResults();
 
   return (

@@ -1,7 +1,12 @@
+// import package
+
+// import package property REACt
 import { CSSProperties } from "react";
 
 // Container Banner
 const Banner = (props: any) => {
+
+  // destructuring props
   const { banner = "home", children } = props;
   return (
     <div
@@ -83,6 +88,7 @@ const Pacakage: React.FC<BannerProps> = ({
   );
 };
 
+// children BANNER
 Banner.BannerHome = BannerHome;
 Banner.Package = Pacakage;
 

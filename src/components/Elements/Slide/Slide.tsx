@@ -1,18 +1,35 @@
-import React from "react";
+// import package
+
+// import component SWIPER, SWIPER SLIDE
 import { Swiper, SwiperSlide } from "swiper/react";
+
+// import modules swiper
+import { Autoplay } from "swiper/modules";
+
+// import scss swiper
 import "swiper/scss";
 import "swiper/scss/pagination";
 import "swiper/css/navigation";
+
+// import scss swiper ionic
 import "@ionic/react/css/ionic-swiper.css";
+
+// import SCSS
 import "./Slide.scss";
-import { Autoplay, Navigation } from "swiper/modules";
-import { IonIcon } from "@ionic/react";
-import { chevronBack, chevronForward } from "ionicons/icons";
+
+// import component photo viewer
 import IonPhotoViewer from "@codesyntax/ionic-react-photo-viewer";
 
+// interface for props
 interface SlideCollectionProps {
   images?: Array<any>;
 }
+
+/**
+ * 
+ * @param param0 images: Array<any>
+ * @returns 
+ */
 
 const Slide: React.FC<SlideCollectionProps> = ({
   images

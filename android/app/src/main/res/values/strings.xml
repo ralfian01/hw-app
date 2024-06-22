@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">capturing-moment</string>
-    <string name="title_activity_main">capturing-moment</string>
+    <string name="app_name">Tulle Capture</string>
+    <string name="title_activity_main">Tulle Capture</string>
     <string name="package_name">com.capturing.app</string>
     <string name="custom_url_scheme">com.capturing.app</string>
     <string name="server_client_id">569116309326-cr4d2ppr8rjkjr41qapgc724uth402v9.apps.googleusercontent.com</string>

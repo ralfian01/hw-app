@@ -1,6 +1,7 @@
+// import FORM COMPONETE REACT cstm
 import FormAuth from "@components/Fragments/Form/FormAuth";
-import React from "react";
 
+// interface props
 interface AuthLayoutsProps {
   login: boolean;
 }

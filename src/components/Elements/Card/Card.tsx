@@ -1,13 +1,20 @@
-import React from "react";
+// import Package
+
+// import component IONIC
 import { IonButton, IonIcon } from "@ionic/react";
 import { chevronForward } from "ionicons/icons";
+
+// import component photo viewer
 import IonPhotoViewer from "@codesyntax/ionic-react-photo-viewer";
-import "./Card.scss";
+// import LINK REACT ROUTER
 import { Link } from "react-router-dom";
 
-// conatiner card
+// import SCSS
+import "./Card.scss";
 
+// container card
 const Card = (props: any) => {
+  // destructuring props
   const { children, name, image, tipe, path } = props;
   return (
     <>
@@ -39,7 +46,7 @@ const formatRp = (angka: number) => {
   });
 };
 
-// card paket
+// card paket props
 interface PaketProps {
   name?: string;
   image?: string;
@@ -48,7 +55,7 @@ interface PaketProps {
 }
 /**
  * @param props
- * @typeParams
+ * @typeParams (name: string, image: string, price: number, icon: boolean)
  * @returns
  */
 const Paket: React.FC<PaketProps> = (props: PaketProps) => {
@@ -80,7 +87,7 @@ const Paket: React.FC<PaketProps> = (props: PaketProps) => {
   );
 };
 
-// Card Portofolio
+// Card Portofolio props
 interface PackageProps {
   id?: string;
   image?: string;
