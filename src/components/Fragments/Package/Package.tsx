@@ -1,15 +1,19 @@
+// import package
+
+// import react router dom
 import { Link } from "react-router-dom";
+
+// import iconify
 import { Icon } from "@iconify/react";
+
+// import redux
 import { useDispatch, useSelector } from "react-redux";
 import { setPath } from "@features/ui/uiSlice";
 
+// import component react  cstm
 import Card from "@components/Elements/Card/Card";
 import Slide from "@components/Elements/Slide/Slide";
 import ButtonPaket from "@components/Elements/Button/ButtonPaket";
-
-// import data from "../../../data/data";
-
-// const { data_portofolio, kolleksi_slide, koleksi_poto, data_paket } = data;
 
 // Package conatiner
 const Package = (props: any) => {
@@ -60,6 +64,8 @@ const Title: React.FC<TitleProps> = (TitleProps) => {
 
 // Package Beranda
 const Home = () => {
+
+  // useSelector data
   const { data_portofolio, kolleksi_slide, data_paket } = useSelector(
     (state: any) => state.ui.data
   );
@@ -117,8 +123,12 @@ const Home = () => {
 
 // Package Paket
 const Paket = () => {
+
+  // useSelector data
   const path = useSelector((state: any) => state.ui.pathPaket);
 
+
+  //   button paket
   const buttonPaket = [
     {
       path: "prewedding",
@@ -142,12 +152,12 @@ const Paket = () => {
     }
   ];
 
+  // data
   const { prewedding, wedding, engagement, add_on } = useSelector(
     (state: any) => state.ui.data.data_paket.more_paket
   );
 
-  // data.data_paket.more_paket;
-
+  // render packages
   const renderPackages = (packages: any[]) => {
     return packages.map((item, index) => (
       <div
@@ -162,6 +172,8 @@ const Paket = () => {
     ));
   };
 
+
+  // get packages based on path
   const getPackages = () => {
     switch (path) {
       case "prewedding":
@@ -232,17 +244,11 @@ const Collection = () => {
   );
 };
 
+
+// children PACKAGE
 Package.Home = Home;
 Package.Paket = Paket;
 Package.Portofolio = Portofolio;
 Package.Collection = Collection;
 
 export default Package;
-
-
-
-// ../public/gambarna
-// [../public][/gambarna]
-// {{url}}{{item.image}}
-// {{ url + item.image.split("../public")[1] }}
-// localhost:8000/gambarna

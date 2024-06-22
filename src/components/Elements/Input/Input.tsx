@@ -1,7 +1,14 @@
-import React, { useState, forwardRef } from "react";
+// import package
+// import React package
+import { useState, forwardRef } from "react";
+
+// import component iconnify
 import { Icon } from "@iconify/react";
+
+// import SCSS
 import "./Input.scss";
 
+// Input Component props
 interface InputProps {
   type?: string;
   placeholder?: string;
@@ -14,7 +21,14 @@ interface InputProps {
   required?: boolean;
 }
 
+/**
+ * @param props type, placeholder, value, name, onChange, className, icon, required
+ * @returns
+ */
+
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+
+  // destructuring props
   const {
     type = "text",
     placeholder = "placeholder",
@@ -26,12 +40,16 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     required = false
   } = props;
 
+
+  // state password
   const [isPasswordVisible, setPasswordVisible] = useState(false);
 
+  // handle icon click
   const handleIconClick = () => {
     setPasswordVisible(!isPasswordVisible);
   };
 
+  // render component
   const inputType = type === "password" && isPasswordVisible ? "text" : type;
 
   return (

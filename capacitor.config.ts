@@ -2,7 +2,7 @@ import type { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
   appId: "com.capturing.app",
-  appName: "capturing-moment",
+  appName: "Tulle Capture",
   webDir: "dist",
   plugins: {
     GoogleAuth: {

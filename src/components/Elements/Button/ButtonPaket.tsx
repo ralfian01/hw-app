@@ -1,7 +1,14 @@
-import React from "react";
+// import Package
+
+// import component IONIC
 import { IonButton, IonLabel } from "@ionic/react";
+
+// HOOKS dispatch redux
 import { useDispatch } from "react-redux";
 import { setPathPaket } from "@features/ui/uiSlice";
+
+// props BUTTONPAKET (khusus TAB BUTTON)
+
 
 interface ButtonPaketProps {
   item: {
@@ -11,8 +18,13 @@ interface ButtonPaketProps {
   };
   isActive: boolean;
 }
+/**
+ * @param props item, isActive
+ */
 
+// BUTTON PAKET COMPONENT
 const ButtonPaket: React.FC<ButtonPaketProps> = ({ item, isActive }) => {
+  // dispatch
   const dispatch = useDispatch();
 
   return (

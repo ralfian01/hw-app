@@ -1,5 +1,7 @@
 import Card from "@components/Elements/Card/Card";
+import Modal from "@components/Elements/Modal/Dialog/modalDialog";
 import useDataDetailPaket from "@hooks/useDataDetailPaket";
+import useLogedin from "@hooks/useLogedin";
 import useToggleTabs from "@hooks/useToggleTabs";
 import { Icon } from "@iconify/react";
 import {
@@ -10,14 +12,32 @@ import {
   IonTitle,
   IonToolbar
 } from "@ionic/react";
+import { useState } from "react";
 import { useParams } from "react-router";
 interface Params {
   slug: string;
 }
 const DetailPaket = () => {
+  const [open, setOpen] = useState(false);
   useToggleTabs(false, true);
   const { slug: slug } = useParams<Params>();
   const data = useDataDetailPaket(slug);
+
+  // hooks login
+  const isLoggedin = useLogedin();
+
+  // showModal
+  const modal = document.getElementById("modal-dialog-paket") as HTMLDialogElement | null;
+  
+  const handleNext = () => {
+    if (!isLoggedin) {
+      // setOpen(true);
+      modal?.showModal();
+
+    } else {
+      alert("belum tersedia");
+    }
+  }
 
   return (
     <IonPage>
@@ -99,10 +119,15 @@ const DetailPaket = () => {
           <IonButton
             expand="block"
             shape="round"
+            onClick={handleNext}
             className="font-montserrat font-semibold capitalize text-sm">
             Lanjutkan
           </IonButton>
         </div>
+        <Modal.Dialog id="modal-dialog-paket" iconColor="var(--warning)" iconName="bi:exclamation-circle-fill"
+          className="font-montserrat font-semibold text-lg text-dark py-3">
+          Opss! anda belum login 
+        </Modal.Dialog>
       </IonContent>
     </IonPage>
   );

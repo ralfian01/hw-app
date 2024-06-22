@@ -1,23 +1,33 @@
-import ModalSearch from "@components/Elements/Modal/ModalSearch";
+// import package
+// import components
+import ModalSearch from "@components/Elements/Modal/Search/ModalSearch";
+
+// import iconnify
 import { Icon } from "@iconify/react";
+
+// import components IONIC
 import {
   IonButton,
   IonButtons,
   IonHeader,
-  IonIcon,
   IonToolbar,
   IonTitle,
   IonAvatar,
   IonLabel,
-  IonModal,
-  IonContent
 } from "@ionic/react";
+
+// import services auth
 import { getInfoLogin } from "@services/auth.services";
-import { search, headsetSharp } from "ionicons/icons";
+
+// import react state
 import { useState } from "react";
 
 const Header = () => {
+
+  // get info login
   const { authorization, username, name } = getInfoLogin();
+
+  // set state
   const [isOpen, setIsOpen] = useState(false);
   return (
     <IonHeader>
